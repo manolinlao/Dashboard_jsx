@@ -39,6 +39,46 @@ const TableComponent: React.FC = () => (
   </div>
 );
 
+const WideTableComponent: React.FC = () => (
+  <div className='example-component wide-table'>
+    <h3>Tabla Ancha (Scroll Horizontal)</h3>
+    <div className='table-scroll'>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Departamento</th>
+            <th>Fecha Inicio</th>
+            <th>Salario</th>
+            <th>País</th>
+            <th>Ciudad</th>
+            <th>Teléfono</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[1, 2, 3].map((i) => (
+            <tr key={i}>
+              <td>{i}</td>
+              <td>Empleado {i}</td>
+              <td>empleado{i}@company.com</td>
+              <td>Departamento {i}</td>
+              <td>2024-0{i}-15</td>
+              <td>${(i * 5000).toLocaleString()}</td>
+              <td>España</td>
+              <td>Madrid</td>
+              <td>+34 600 00 00 0{i}</td>
+              <td>Activo</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);
+
 interface CardComponentProps {
   title: string;
   content: string;
@@ -99,7 +139,7 @@ const App: React.FC = () => {
     },
     {
       id: 2,
-      component: <TableComponent />,
+      component: <WideTableComponent />,
       colSpan: 1,
       rowSpan: 1
     },
