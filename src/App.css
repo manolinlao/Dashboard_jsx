@@ -1,0 +1,148 @@
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.app-header h1 {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.app-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.app-main {
+  margin-bottom: 20px;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-footer p {
+  color: #666;
+  margin: 0;
+}
+
+/* Estilos para componentes de ejemplo */
+.example-component {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+}
+
+.example-component h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+/* Chart Component */
+.chart .chart-placeholder {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 150px;
+  padding: 20px 0;
+}
+
+.chart .bar {
+  width: 40px;
+  background: linear-gradient(to top, #3f51b5, #5c6bc0);
+  border-radius: 4px 4px 0 0;
+}
+
+/* Table Component */
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Card Component */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Image Component */
+.image .image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  font-size: 4rem;
+}
+
+/* List Component */
+.list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.list li {
+  padding: 10px;
+  margin-bottom: 8px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  border-left: 3px solid #3f51b5;
+}
+
+/* Stat Component */
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 4px solid;
+  padding: 20px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
