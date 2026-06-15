@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-React component for displaying a resizable grid of components. The grid supports up to 2 columns and allows items to span multiple columns/rows.
+React + TypeScript component for displaying a resizable grid of components. The grid supports up to 2 columns and allows items to span multiple columns/rows.
 
 ## Commands
 
@@ -20,21 +20,29 @@ npm run build
 
 # Preview production build
 npm run preview
+
+# Type check only (no build)
+npm run type-check
 ```
 
 ## Architecture
 
 ### Core Component: ResizableGrid
 
-**Location**: `src/components/ResizableGrid.jsx`
+**Location**: `src/components/ResizableGrid.tsx`
 
-Accepts an array of items with this structure:
-```javascript
-{
-  id: string|number,        // Unique identifier
-  component: React.Component, // Any React component
-  colSpan: 1|2,             // Columns to occupy (default: 1)
-  rowSpan: 1|2              // Rows to occupy (default: 1)
+**Types**:
+```typescript
+interface GridItem {
+  id: string | number;
+  component: React.ReactNode;
+  colSpan?: 1 | 2;
+  rowSpan?: 1 | 2;
+}
+
+interface ResizableGridProps {
+  items?: GridItem[];
+  rowHeight?: number;
 }
 ```
 
@@ -52,7 +60,7 @@ Accepts an array of items with this structure:
 
 ### Tech Stack
 
-- React 18.3
+- React 18.3 with TypeScript 5.5
 - Vite 5.4 (dev server & build tool)
 - CSS Grid for layout
 - No external UI libraries
@@ -62,12 +70,14 @@ Accepts an array of items with this structure:
 ```
 src/
   components/
-    ResizableGrid.jsx    # Main grid component
+    ResizableGrid.tsx    # Main grid component (TypeScript)
     ResizableGrid.css    # Grid styles
-  App.jsx                # Example usage with sample components
+  App.tsx                # Example usage with sample components
   App.css                # Example component styles
-  main.jsx               # React entry point
+  main.tsx               # React entry point
   index.css              # Global styles
+tsconfig.json            # TypeScript configuration
+tsconfig.node.json       # TypeScript config for Vite
 ```
 
 ## Environment Setup

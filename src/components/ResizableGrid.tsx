@@ -1,21 +1,34 @@
 import React, { useState } from 'react';
 import './ResizableGrid.css';
 
+export interface GridItem {
+  id: string | number;
+  component: React.ReactNode;
+  colSpan?: 1 | 2;
+  rowSpan?: 1 | 2;
+}
+
+export interface ResizableGridProps {
+  items?: GridItem[];
+  rowHeight?: number;
+}
+
+interface GridItemState extends GridItem {
+  colSpan: 1 | 2;
+  rowSpan: 1 | 2;
+}
+
 /**
  * ResizableGrid Component
  *
- * @param {Object} props
- * @param {Array} props.items - Array de objetos con la estructura:
- *   {
- *     id: string|number,
- *     component: React.Component,
- *     colSpan: number (1-2, default: 1) - columnas que ocupa,
- *     rowSpan: number (1-2, default: 1) - filas que ocupa
- *   }
- * @param {number} props.rowHeight - Altura de cada fila (default: 250px)
+ * Grid component that displays items in a 2-column layout with resizable cells.
+ * Shows exactly 2 rows at a time with vertical scroll for additional content.
  */
-const ResizableGrid = ({ items = [], rowHeight = 250 }) => {
-  const [gridItems, setGridItems] = useState(
+const ResizableGrid: React.FC<ResizableGridProps> = ({
+  items = [],
+  rowHeight = 250
+}) => {
+  const [gridItems, setGridItems] = useState<GridItemState[]>(
     items.map(item => ({
       ...item,
       colSpan: item.colSpan || 1,
@@ -23,21 +36,21 @@ const ResizableGrid = ({ items = [], rowHeight = 250 }) => {
     }))
   );
 
-  const toggleColSpan = (id) => {
+  const toggleColSpan = (id: string | number) => {
     setGridItems(items =>
       items.map(item =>
         item.id === id
-          ? { ...item, colSpan: item.colSpan === 2 ? 1 : 2 }
+          ? { ...item, colSpan: (item.colSpan === 2 ? 1 : 2) as 1 | 2 }
           : item
       )
     );
   };
 
-  const toggleRowSpan = (id) => {
+  const toggleRowSpan = (id: string | number) => {
     setGridItems(items =>
       items.map(item =>
         item.id === id
-          ? { ...item, rowSpan: item.rowSpan === 2 ? 1 : 2 }
+          ? { ...item, rowSpan: (item.rowSpan === 2 ? 1 : 2) as 1 | 2 }
           : item
       )
     );

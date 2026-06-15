@@ -1,6 +1,6 @@
 # Resizable Grid Component
 
-Componente React que muestra una lista de componentes en un grid redimensionable de máximo 2 columnas.
+Componente React + TypeScript que muestra una lista de componentes en un grid redimensionable de máximo 2 columnas.
 
 ## Características
 
@@ -26,10 +26,10 @@ El servidor se iniciará en `http://localhost:3000`
 
 ## Cómo usar el componente
 
-```jsx
-import ResizableGrid from './components/ResizableGrid';
+```tsx
+import ResizableGrid, { GridItem } from './components/ResizableGrid';
 
-const gridItems = [
+const gridItems: GridItem[] = [
   {
     id: 1,
     component: <TuComponente />,
@@ -41,7 +41,7 @@ const gridItems = [
 
 <ResizableGrid 
   items={gridItems} 
-  maxHeight={700}  // Altura máxima del grid (opcional, default: 600)
+  rowHeight={250}  // Altura de cada fila (opcional, default: 250px)
 />
 ```
 

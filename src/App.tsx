@@ -1,9 +1,9 @@
 import React from 'react';
-import ResizableGrid from './components/ResizableGrid';
+import ResizableGrid, { GridItem } from './components/ResizableGrid';
 import './App.css';
 
 // Componentes de ejemplo
-const ChartComponent = () => (
+const ChartComponent: React.FC = () => (
   <div className="example-component chart">
     <h3>Gráfica</h3>
     <div className="chart-placeholder">
@@ -15,7 +15,7 @@ const ChartComponent = () => (
   </div>
 );
 
-const TableComponent = () => (
+const TableComponent: React.FC = () => (
   <div className="example-component table">
     <h3>Tabla de Datos</h3>
     <table>
@@ -39,14 +39,19 @@ const TableComponent = () => (
   </div>
 );
 
-const CardComponent = ({ title, content }) => (
+interface CardComponentProps {
+  title: string;
+  content: string;
+}
+
+const CardComponent: React.FC<CardComponentProps> = ({ title, content }) => (
   <div className="example-component card">
     <h3>{title}</h3>
     <p>{content}</p>
   </div>
 );
 
-const ImageComponent = () => (
+const ImageComponent: React.FC = () => (
   <div className="example-component image">
     <h3>Imagen</h3>
     <div className="image-placeholder">
@@ -55,7 +60,7 @@ const ImageComponent = () => (
   </div>
 );
 
-const ListComponent = () => (
+const ListComponent: React.FC = () => (
   <div className="example-component list">
     <h3>Lista de Tareas</h3>
     <ul>
@@ -68,16 +73,22 @@ const ListComponent = () => (
   </div>
 );
 
-const StatComponent = ({ label, value, color }) => (
+interface StatComponentProps {
+  label: string;
+  value: string;
+  color: string;
+}
+
+const StatComponent: React.FC<StatComponentProps> = ({ label, value, color }) => (
   <div className="example-component stat" style={{ borderLeftColor: color }}>
     <div className="stat-label">{label}</div>
     <div className="stat-value" style={{ color }}>{value}</div>
   </div>
 );
 
-function App() {
+const App: React.FC = () => {
   // Define los items del grid con sus componentes
-  const gridItems = [
+  const gridItems: GridItem[] = [
     {
       id: 1,
       component: <ChartComponent />,
@@ -155,6 +166,6 @@ function App() {
       </footer>
     </div>
   );
-}
+};
 
 export default App;
