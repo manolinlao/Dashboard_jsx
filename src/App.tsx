@@ -4,19 +4,19 @@ import './App.css';
 
 // Componentes de ejemplo
 const ChartComponent: React.FC = () => (
-  <div className="example-component chart">
+  <div className='example-component chart'>
     <h3>Gráfica</h3>
-    <div className="chart-placeholder">
-      <div className="bar" style={{ height: '60%' }}></div>
-      <div className="bar" style={{ height: '80%' }}></div>
-      <div className="bar" style={{ height: '40%' }}></div>
-      <div className="bar" style={{ height: '90%' }}></div>
+    <div className='chart-placeholder'>
+      <div className='bar' style={{ height: '60%' }}></div>
+      <div className='bar' style={{ height: '80%' }}></div>
+      <div className='bar' style={{ height: '40%' }}></div>
+      <div className='bar' style={{ height: '90%' }}></div>
     </div>
   </div>
 );
 
 const TableComponent: React.FC = () => (
-  <div className="example-component table">
+  <div className='example-component table'>
     <h3>Tabla de Datos</h3>
     <table>
       <thead>
@@ -27,7 +27,7 @@ const TableComponent: React.FC = () => (
         </tr>
       </thead>
       <tbody>
-        {[1, 2, 3, 4, 5].map(i => (
+        {[1, 2, 3, 4, 5].map((i) => (
           <tr key={i}>
             <td>{i}</td>
             <td>Item {i}</td>
@@ -45,23 +45,23 @@ interface CardComponentProps {
 }
 
 const CardComponent: React.FC<CardComponentProps> = ({ title, content }) => (
-  <div className="example-component card">
+  <div className='example-component card'>
     <h3>{title}</h3>
     <p>{content}</p>
   </div>
 );
 
 const ImageComponent: React.FC = () => (
-  <div className="example-component image">
+  <div className='example-component image'>
     <h3>Imagen</h3>
-    <div className="image-placeholder">
+    <div className='image-placeholder'>
       <span>🖼️</span>
     </div>
   </div>
 );
 
 const ListComponent: React.FC = () => (
-  <div className="example-component list">
+  <div className='example-component list'>
     <h3>Lista de Tareas</h3>
     <ul>
       <li>✅ Tarea completada 1</li>
@@ -80,9 +80,11 @@ interface StatComponentProps {
 }
 
 const StatComponent: React.FC<StatComponentProps> = ({ label, value, color }) => (
-  <div className="example-component stat" style={{ borderLeftColor: color }}>
-    <div className="stat-label">{label}</div>
-    <div className="stat-value" style={{ color }}>{value}</div>
+  <div className='example-component stat' style={{ borderLeftColor: color }}>
+    <div className='stat-label'>{label}</div>
+    <div className='stat-value' style={{ color }}>
+      {value}
+    </div>
   </div>
 );
 
@@ -103,10 +105,12 @@ const App: React.FC = () => {
     },
     {
       id: 3,
-      component: <CardComponent
-        title="Dashboard"
-        content="Este es un componente de tarjeta que puede contener cualquier información."
-      />,
+      component: (
+        <CardComponent
+          title='Dashboard'
+          content='Este es un componente de tarjeta que puede contener cualquier información.'
+        />
+      ),
       colSpan: 1,
       rowSpan: 1
     },
@@ -124,44 +128,44 @@ const App: React.FC = () => {
     },
     {
       id: 6,
-      component: <StatComponent label="Usuarios Activos" value="1,234" color="#4caf50" />,
+      component: <StatComponent label='Usuarios Activos' value='1,234' color='#4caf50' />,
       colSpan: 1,
       rowSpan: 1
     },
     {
       id: 7,
-      component: <StatComponent label="Ingresos" value="$45,678" color="#2196f3" />,
+      component: <StatComponent label='Ingresos' value='$45,678' color='#2196f3' />,
       colSpan: 1,
       rowSpan: 1
     },
     {
       id: 8,
-      component: <CardComponent
-        title="Notificación"
-        content="Tienes 5 nuevas notificaciones pendientes de revisar."
-      />,
+      component: (
+        <CardComponent
+          title='Notificación'
+          content='Tienes 5 nuevas notificaciones pendientes de revisar.'
+        />
+      ),
       colSpan: 1,
       rowSpan: 1
     }
   ];
 
   return (
-    <div className="app">
-      <header className="app-header">
+    <div className='app'>
+      <header className='app-header'>
         <h1>Grid Redimensionable</h1>
         <p>Haz clic en las flechas para expandir/contraer los componentes</p>
       </header>
 
-      <main className="app-main">
-        <ResizableGrid
-          items={gridItems}
-          rowHeight={250}
-        />
+      <main className='app-main'>
+        <ResizableGrid items={gridItems} rowHeight={250} />
       </main>
 
-      <footer className="app-footer">
+      <footer className='app-footer'>
         <p>
-          <strong>Controles:</strong> → / ↔ (expandir/contraer ancho) | ↓ / ↕ (expandir/contraer altura)
+          <strong>Controles:</strong> → / ↔ (expandir/contraer ancho) | ↓ / ↕ (expandir/contraer
+          altura)
         </p>
       </footer>
     </div>
