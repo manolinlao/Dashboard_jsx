@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './ResizableGrid.css';
 
 export interface GridItem {
@@ -10,7 +10,6 @@ export interface GridItem {
 
 export interface ResizableGridProps {
   items?: GridItem[];
-  rowHeight?: number;
 }
 
 interface GridItemState extends GridItem {
@@ -23,11 +22,12 @@ interface GridItemState extends GridItem {
  *
  * Grid component that displays items in a 2-column layout with resizable cells.
  * Shows exactly 2 rows at a time with vertical scroll for additional content.
+ * The row height is calculated automatically based on the container height.
+ * The component will fill 100% of its parent container's height.
  */
-const ResizableGrid: React.FC<ResizableGridProps> = ({
-  items = [],
-  rowHeight = 250
-}) => {
+const ResizableGrid: React.FC<ResizableGridProps> = ({ items = [] }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [rowHeight, setRowHeight] = useState<number>(250);
   const [gridItems, setGridItems] = useState<GridItemState[]>(
     items.map(item => ({
       ...item,
@@ -35,6 +35,38 @@ const ResizableGrid: React.FC<ResizableGridProps> = ({
       rowSpan: item.rowSpan || 1
     }))
   );
+
+  useEffect(() => {
+    const calculateRowHeight = () => {
+      if (!wrapperRef.current) return;
+
+      const containerHeight = wrapperRef.current.clientHeight;
+      const padding = 20; // 10px top + 10px bottom
+      const gap = 15;
+
+      // Calcular altura de cada fila para que quepan exactamente 2 filas
+      const calculatedRowHeight = Math.floor((containerHeight - padding - gap) / 2);
+
+      // Mínimo de 100px por fila
+      setRowHeight(Math.max(100, calculatedRowHeight));
+    };
+
+    // Calcular al montar
+    calculateRowHeight();
+
+    // Recalcular cuando cambia el tamaño del contenedor
+    const resizeObserver = new ResizeObserver(() => {
+      calculateRowHeight();
+    });
+
+    if (wrapperRef.current) {
+      resizeObserver.observe(wrapperRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   const toggleColSpan = (id: string | number) => {
     setGridItems(items =>
@@ -56,12 +88,8 @@ const ResizableGrid: React.FC<ResizableGridProps> = ({
     );
   };
 
-  // Calcular altura para mostrar exactamente 2 filas
-  // 2 filas * rowHeight + 1 gap (15px) + padding del wrapper (20px)
-  const wrapperHeight = (2 * rowHeight) + 15 + 20;
-
   return (
-    <div className="resizable-grid-wrapper" style={{ height: `${wrapperHeight}px` }}>
+    <div ref={wrapperRef} className="resizable-grid-wrapper">
       <div
         className="resizable-grid"
         style={{ gridAutoRows: `${rowHeight}px` }}

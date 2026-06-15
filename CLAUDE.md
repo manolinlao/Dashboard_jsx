@@ -42,20 +42,21 @@ interface GridItem {
 
 interface ResizableGridProps {
   items?: GridItem[];
-  rowHeight?: number;
 }
 ```
 
 **Props**:
 - `items`: Array of grid items
-- `maxHeight`: Maximum grid height in pixels (default: 600)
+
+The component automatically fills 100% of its parent container's height and calculates row height to fit exactly 2 rows. Use CSS or inline styles on the parent to control the grid's height.
 
 ### Grid Behavior
 
-- Base layout: 2 columns, auto rows (min 250px)
-- Vertical scroll appears when content exceeds `maxHeight`
-- Each item has resize controls (top-right corner)
+- Base layout: 2 columns, calculated row height to show exactly 2 rows
+- Vertical scroll appears when more than 4 items (2 rows × 2 columns)
+- Each item has resize controls (top-right corner buttons)
 - Toggle buttons expand/collapse width (1↔2 cols) and height (1↔2 rows)
+- Drag handles on borders for visual resizing
 - Responsive: collapses to 1 column on mobile (<768px)
 
 ### Tech Stack

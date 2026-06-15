@@ -39,13 +39,30 @@ const gridItems: GridItem[] = [
   // ... más items
 ];
 
-<ResizableGrid 
-  items={gridItems} 
-  rowHeight={250}  // Altura de cada fila (opcional, default: 250px)
-/>
+// El componente ocupa el 100% de la altura de su contenedor padre
+<div style={{ height: '600px' }}>
+  <ResizableGrid items={gridItems} />
+</div>
+
+// O con CSS
+<div className="mi-contenedor">  {/* .mi-contenedor { height: 80vh; } */}
+  <ResizableGrid items={gridItems} />
+</div>
 ```
+
+### Props
+
+- **items**: Array de componentes a mostrar
+
+El componente **ocupa automáticamente el 100% de la altura de su contenedor padre** y calcula la altura de cada fila para mostrar exactamente 2 filas.
 
 ## Controles
 
-- **→ / ↔**: Expandir/contraer el ancho del componente (1 o 2 columnas)
-- **↓ / ↕**: Expandir/contraer la altura del componente (1 o 2 filas)
+### Redimensionar arrastrando:
+- **Borde derecho**: Arrastra para expandir/contraer el ancho (1 ↔ 2 columnas)
+- **Borde inferior**: Arrastra para expandir/contraer la altura (1 ↔ 2 filas)
+- **Esquina inferior derecha**: Arrastra en cualquier dirección
+
+### Botones:
+- **→ / ↔**: Click para expandir/contraer el ancho
+- **↓ / ↕**: Click para expandir/contraer la altura

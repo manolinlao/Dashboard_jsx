@@ -21,6 +21,7 @@
 
 .app-main {
   margin-bottom: 20px;
+  height: 600px; /* Define la altura del contenedor */
 }
 
 .app-footer {

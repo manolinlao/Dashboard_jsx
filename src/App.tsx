@@ -159,7 +159,7 @@ const App: React.FC = () => {
       </header>
 
       <main className='app-main'>
-        <ResizableGrid items={gridItems} rowHeight={250} />
+        <ResizableGrid items={gridItems} />
       </main>
 
       <footer className='app-footer'>
